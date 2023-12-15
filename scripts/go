@@ -6,6 +6,6 @@ go_url="https://golang.org/dl/${go_version}.linux-amd64.tar.gz"
 
 wget -P "$download_dir" "$go_url"
 sudo tar -C /usr/local -xzf "${download_dir}/${go_version}.linux-amd64.tar.gz"
-echo "export PATH=/usr/local/go/bin:\${PATH}" | sudo tee -a "$HOME/.profile"
+echo "export PATH=/usr/local/go/bin:\${PATH}" |  tee -a "$HOME/.profile"
 source "$HOME/.profile"
 export PATH=/usr/local/go/bin:${PATH}
