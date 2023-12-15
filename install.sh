@@ -30,41 +30,7 @@ chown -R $username:$username /home/$username
 # Installing Essential Programs 
 nala install feh kitty tmux rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc mangohud vim neovim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop -y
-
-#install docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh --dry-run
-nala install -y nvidia-container-toolki
-
-#install vscode
-nala install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
-curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg >/dev/null
-echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
-nala update
-nala install code
-
-#install gh
-type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-&& sudo nala update \
-&& sudo nala install gh -y
-
-#Install go
-download_dir="$HOME/Downloads"
-go_version="go1.20.2"
-go_url="https://golang.org/dl/${go_version}.linux-amd64.tar.gz"
-
-wget -P "$download_dir" "$go_url"
-sudo tar -C /usr/local -xzf "${download_dir}/${go_version}.linux-amd64.tar.gz"
-echo "export PATH=/usr/local/go/bin:\${PATH}" | sudo tee -a "$HOME/.profile"
-source "$HOME/.profile"
-
-#lazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
+nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop -y
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -108,6 +74,37 @@ git clone https://github.com/Ujstor/mybash
 cd mybash
 bash setup.sh
 cd $builddir
+source ~/.bashrc
+
+#install docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh --dry-run
+nala install nvidia-container-toolki -y
+
+#install vscode
+nala install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
+curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg >/dev/null
+echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+nala update
+nala install code
+
+#install gh
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo nala update \
+&& sudo nala install gh -y
+
+#Install go
+download_dir="$HOME/Downloads"
+go_version="go1.20.2"
+go_url="https://golang.org/dl/${go_version}.linux-amd64.tar.gz"
+
+wget -P "$download_dir" "$go_url"
+sudo tar -C /usr/local -xzf "${download_dir}/${go_version}.linux-amd64.tar.gz"
+echo "export PATH=/usr/local/go/bin:\${PATH}" | sudo tee -a "$HOME/.profile"
+source "$HOME/.profile"
 
 # Use nala
 bash scripts/usenala
