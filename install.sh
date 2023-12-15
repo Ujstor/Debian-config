@@ -30,7 +30,7 @@ chown -R $username:$username /home/$username
 # Installing Essential Programs 
 nala install feh kitty tmux rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop -y
+nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop zoxide timeshift -y
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -66,6 +66,7 @@ systemctl set-default graphical.target
 git clone https://github.com/Ujstor/mybash
 cd mybash
 bash setup.sh
+eval "$(starship init bash)"
 cd $builddir
 
 #scripts
