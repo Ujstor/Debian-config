@@ -67,7 +67,6 @@ git clone https://github.com/Ujstor/mybash
 cd mybash
 bash setup.sh
 cd $builddir
-source ~/.bashrc
 
 #scripts
 bash scripts/vscode-gh
