@@ -28,9 +28,9 @@ mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install feh kitty tmux curl rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
+nala install feh kitty tmux curl rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev python3.10 -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop zoxide timeshift -y
+nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop zoxide timeshift tldr git trash-cli autojump -y
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -70,7 +70,22 @@ eval "$(starship init bash)"
 cd $builddir
 
 #scripts
-sudo bash scripts/vscode-gh
-sudo bash scripts/go
-sudo bash scripts/docker
-sudo bash scripts/usenala
+bash scripts/vscode-gh
+bash scripts/go
+
+bash scripts/docker
+cp config-files/docker-sock-permissions.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable docker-sock-permissions.service
+
+
+cp scripts/mount-menu.sh /usr/local/bin
+chmod a+x /usr/local/bin/mount-menu.sh
+cp scripts/umount-menu.sh /usr/local/bin
+chmod a+x /usr/local/bin/umount-menu.sh
+
+
+#nordvpn
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+
+bash scripts/usenala
