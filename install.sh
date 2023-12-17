@@ -28,9 +28,9 @@ mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install feh kitty tmux curl rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev python3.10 -y
+nala install feh kitty tmux rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
 # Installing Other less important Programs
-nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji lightdm gdu htop zoxide timeshift tldr git trash-cli autojump -y
+nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji gdu htop zoxide timeshift tldr git trash-cli autojump curl -y
 
 # Download Nordic Theme
 cd /usr/share/themes/
@@ -58,14 +58,10 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
-# Enable graphical login and change target from CLI to GUI
-systemctl enable lightdm
-systemctl set-default graphical.target
-
 # Beautiful bash
 git clone https://github.com/Ujstor/mybash
 cd mybash
-bash setup.sh
+sudo bash setup.sh
 eval "$(starship init bash)"
 cd $builddir
 
