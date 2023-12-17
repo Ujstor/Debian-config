@@ -73,12 +73,6 @@ cd $builddir
 bash scripts/vscode-gh
 bash scripts/go
 
-bash scripts/docker
-cp config-files/docker-sock-permissions.service /etc/systemd/system/
-systemctl daemon-reload
-systemctl enable docker-sock-permissions.service
-
-
 cp scripts/mount-menu.sh /usr/local/bin
 chmod a+x /usr/local/bin/mount-menu.sh
 cp scripts/umount-menu.sh /usr/local/bin
@@ -88,5 +82,11 @@ chmod a+x /usr/local/bin/umount-menu.sh
 #nordvpn
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-bash nvidia-cuda
+bash scripts/nvidia-cuda
+
+bash scripts/docker
+cp config-files/docker-sock-permissions.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable docker-sock-permissions.service
+
 bash scripts/usenala
