@@ -88,4 +88,5 @@ chmod a+x /usr/local/bin/umount-menu.sh
 #nordvpn
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
+bash nvidia-cuda
 bash scripts/usenala
