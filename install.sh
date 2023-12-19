@@ -69,6 +69,7 @@ cd $builddir
 bash scripts/vscode-gh
 bash scripts/go
 
+#mount scripts
 cp scripts/mount-menu.sh /usr/local/bin
 chmod a+x /usr/local/bin/mount-menu.sh
 cp scripts/umount-menu.sh /usr/local/bin
@@ -78,11 +79,19 @@ chmod a+x /usr/local/bin/umount-menu.sh
 #nordvpn
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
+#nvidia drivers & cuda
 bash scripts/nvidia-cuda
 
+#docker
 bash scripts/docker
 cp config-files/docker-sock-permissions.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable docker-sock-permissions.service
 
+#gtop
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install node
+npm install gtop -g
+
+#apt---->nala
 bash scripts/usenala
