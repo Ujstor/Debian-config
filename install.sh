@@ -75,7 +75,6 @@ chmod a+x /usr/local/bin/mount-menu.sh
 cp scripts/umount-menu.sh /usr/local/bin
 chmod a+x /usr/local/bin/umount-menu.sh
 
-
 #nordvpn
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
@@ -92,6 +91,9 @@ systemctl enable docker-sock-permissions.service
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 nvm install node
 npm install gtop -g
+
+#k8s
+bash scripts/kubernetes
 
 #apt---->nala
 bash scripts/usenala
