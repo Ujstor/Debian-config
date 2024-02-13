@@ -23,12 +23,12 @@ mkdir -p /home/$username/.fonts
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/backgrounds
 cp -R dotconfig/* /home/$username/.config/
-cp bg.jpg /home/$username/Pictures/backgrounds/
+cp wallpaper.jpg /home/$username/Pictures/backgrounds/
 mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Installing Essential Programs 
-nala install feh kitty tmux rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev -y
+nala install feh kitty tmux rofi picom thunar nitrogen lxpolkit x11-xserver-utils unzip wget pipewire wireplumber  pulseaudio pavucontrol build-essential libx11-dev libxft-dev libxinerama-dev libx11-xcb-dev libxcb-res0-dev zoxide -y
 # Installing Other less important Programs
 nala install neofetch flameshot psmisc mangohud vim lxappearance papirus-icon-theme lxappearance fonts-noto-color-emoji gdu htop zoxide timeshift tldr git trash-cli autojump curl fzf -y
 
@@ -57,6 +57,21 @@ cd Nordzy-cursors
 ./install.sh
 cd $builddir
 rm -rf Nordzy-cursors
+
+# Install floorp-browser
+nala install apt-transport-https curl -y
+curl -fsSL https://ppa.ablaze.one/KEY.gpg | gpg --dearmor -o /usr/share/keyrings/Floorp.gpg
+curl -sS --compressed -o /etc/apt/sources.list.d/Floorp.list 'https://ppa.ablaze.one/Floorp.list'
+nala update
+nala install floorp -y
+
+# Enable graphical login and change target from CLI to GUI
+systemctl enable lightdm
+systemctl set-default graphical.target
+
+# Enable wireplumber audio service
+
+sudo -u $username systemctl --user enable wireplumber.service
 
 # Beautiful bash
 git clone https://github.com/Ujstor/mybash
@@ -95,5 +110,12 @@ npm install gtop -g
 #k8s
 bash scripts/kubernetes
 
-#apt---->nala
+# DWM Setup
+git clone https://github.com/ujstor/dwm
+cd dwm-titus
+make clean install
+cp dwm.desktop /usr/share/xsessions
+cd $builddir
+
+# Use nala
 bash scripts/usenala

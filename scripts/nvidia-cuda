@@ -14,10 +14,9 @@ sudo apt install build-essential gcc dirmngr ca-certificates software-properties
 curl -fSsL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | sudo gpg --dearmor | sudo tee "$GPG_KEY_FILE" > /dev/null 2>&1; \
 curl -fSsL https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/3bf863cc.pub | sudo gpg --dearmor | sudo tee -a "$GPG_KEY_FILE" > /dev/null 2>&1
 
-echo 'deb [signed-by='"$GPG_KEY_FILE"'] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /' | sudo tee /etc/apt/sources.list.d/nvidia-drivers.list; \
-echo 'deb [signed-by='"$GPG_KEY_FILE"'] https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/ /' | sudo tee -a /etc/apt/sources.list.d/nvidia-drivers.list
+echo 'deb [signed-by='"$GPG_KEY_FILE"'] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /' | sudo tee /etc/apt/sources.list.d/nvidia-drivers.list > /dev/null 2>&1; \
+echo 'deb [signed-by='"$GPG_KEY_FILE"'] https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/ /' | sudo tee -a /etc/apt/sources.list.d/nvidia-drivers.list > /dev/null 2>&1
 
 sudo apt update
 
-sudo apt install nvidia-driver cuda-drivers-545 cuda
-
+sudo apt install nvidia-driver cuda-drivers-545 cuda -y
