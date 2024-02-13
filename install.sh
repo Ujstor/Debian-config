@@ -76,7 +76,7 @@ sudo -u $username systemctl --user enable wireplumber.service
 # Beautiful bash
 git clone https://github.com/Ujstor/mybash
 cd mybash
-sudo bash setup.sh
+sudo bash setup.sh -y
 eval "$(starship init bash)"
 cd $builddir
 
@@ -91,7 +91,7 @@ cp scripts/umount-menu.sh /usr/local/bin
 chmod a+x /usr/local/bin/umount-menu.sh
 
 #nordvpn
-sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) -y
 
 #nvidia drivers & cuda
 bash scripts/nvidia-cuda
@@ -112,7 +112,7 @@ bash scripts/kubernetes
 
 # DWM Setup
 git clone https://github.com/ujstor/dwm
-cd dwm-titus
+cd dwm
 make clean install
 cp dwm.desktop /usr/share/xsessions
 cd $builddir
