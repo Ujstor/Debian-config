@@ -58,12 +58,11 @@ cd Nordzy-cursors
 cd $builddir
 rm -rf Nordzy-cursors
 
-# Enable graphical login and change target from CLI to GUI
-systemctl enable lightdm
-systemctl set-default graphical.target
+# # Enable graphical login and change target from CLI to GUI
+# systemctl enable lightdm
+# systemctl set-default graphical.target
 
 # Enable wireplumber audio service
-
 sudo -u $username systemctl --user enable wireplumber.service
 
 # Beautiful bash
@@ -96,7 +95,7 @@ systemctl daemon-reload
 systemctl enable docker-sock-permissions.service
 
 #gtop
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash 
 nvm install node
 npm install gtop -g
 
@@ -104,11 +103,15 @@ npm install gtop -g
 bash scripts/kubernetes
 
 # DWM Setup
-git clone https://github.com/ujstor/dwm
-cd dwm
-make clean install
-cp dwm.desktop /usr/share/xsessions
-cd $builddir
+# git clone https://github.com/ujstor/dwm
+# cd dwm
+# make clean install
+# cp dwm.desktop /usr/share/xsessions
+# cd $builddir
+
+#install and config nvim tmux
+curl -sSL https://raw.githubusercontent.com/Ujstor/tmux-config/master/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Ujstor/nvim-config/master/install.sh | bash
 
 # Use nala
 bash scripts/usenala
