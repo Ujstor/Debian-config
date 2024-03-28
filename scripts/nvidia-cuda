@@ -19,4 +19,4 @@ echo 'deb [signed-by='"$GPG_KEY_FILE"'] https://developer.download.nvidia.com/co
 
 sudo apt update
 
-sudo apt install nvidia-driver cuda-drivers-545 cuda -y
+sudo apt install nvidia-driver cuda-drivers-550 cuda -y

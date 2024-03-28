@@ -65,6 +65,10 @@ rm -rf Nordzy-cursors
 # Enable wireplumber audio service
 sudo -u $username systemctl --user enable wireplumber.service
 
+#install and config nvim tmux
+curl -sSL https://raw.githubusercontent.com/Ujstor/tmux-config/master/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Ujstor/nvim-config/master/install.sh | bash
+
 # Beautiful bash
 git clone https://github.com/Ujstor/mybash
 cd mybash
@@ -94,11 +98,6 @@ cp config-files/docker-sock-permissions.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable docker-sock-permissions.service
 
-#gtop
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash 
-nvm install node
-npm install gtop -g
-
 #k8s
 bash scripts/kubernetes
 
@@ -109,9 +108,6 @@ bash scripts/kubernetes
 # cp dwm.desktop /usr/share/xsessions
 # cd $builddir
 
-#install and config nvim tmux
-curl -sSL https://raw.githubusercontent.com/Ujstor/tmux-config/master/install.sh | bash
-curl -sSL https://raw.githubusercontent.com/Ujstor/nvim-config/master/install.sh | bash
 
 # Use nala
 bash scripts/usenala
