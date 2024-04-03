@@ -43,13 +43,15 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.z
 unzip FiraCode.zip -d /home/$username/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/$username/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d /home/$username/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 chown $username:$username /home/$username/.fonts/*
 
 # Reloading Font
 fc-cache -vf
 # Removing zip Files
-rm ./FiraCode.zip ./Meslo.zip
+rm ./FiraCode.zip ./Meslo.zip ./JetBrainsMono.zip
 
 # Install Nordzy cursor
 git clone https://github.com/alvatip/Nordzy-cursors
@@ -59,8 +61,8 @@ cd $builddir
 rm -rf Nordzy-cursors
 
 # # Enable graphical login and change target from CLI to GUI
-# systemctl enable lightdm
-# systemctl set-default graphical.target
+systemctl enable lightdm
+systemctl set-default graphical.target
 
 # Enable wireplumber audio service
 sudo -u $username systemctl --user enable wireplumber.service
@@ -102,11 +104,11 @@ systemctl enable docker-sock-permissions.service
 bash scripts/kubernetes
 
 # DWM Setup
-# git clone https://github.com/ujstor/dwm
-# cd dwm
-# make clean install
-# cp dwm.desktop /usr/share/xsessions
-# cd $builddir
+git clone https://github.com/ujstor/dwm
+cd dwm
+make clean install
+cp dwm.desktop /usr/share/xsessions
+cd $builddir
 
 
 # Use nala
