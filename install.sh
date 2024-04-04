@@ -68,8 +68,8 @@ systemctl set-default graphical.target
 sudo -u $username systemctl --user enable wireplumber.service
 
 #install and config nvim tmux
-curl -sSL https://raw.githubusercontent.com/Ujstor/tmux-config/master/install.sh | bash
-curl -sSL https://raw.githubusercontent.com/Ujstor/nvim-config/master/install.sh | bash
+sh <(curl -sSL https://raw.githubusercontent.com/Ujstor/tmux-config/master/install.sh) -y
+sh <(curl -sSL https://raw.githubusercontent.com/Ujstor/nvim-config/master/install.sh) -y
 
 # Beautiful bash
 git clone https://github.com/Ujstor/mybash
@@ -81,6 +81,7 @@ cd $builddir
 #scripts
 bash scripts/vscode-gh
 bash scripts/go
+bash scripts/brave
 
 #mount scripts
 cp scripts/mount-menu.sh /usr/local/bin

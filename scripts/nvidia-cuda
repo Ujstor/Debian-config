@@ -5,8 +5,8 @@ set -e
 GPG_KEY_FILE="/usr/share/keyrings/nvidia-drivers.gpg"
 
 sudo apt install software-properties-common -y; \
-sudo add-apt-repository contrib non-free-firmware; \
-sudo add-apt-repository contrib non-free; \
+sudo add-apt-repository contrib non-free-firmware -y; \
+sudo add-apt-repository contrib non-free -y; \
 sudo apt update
 
 sudo apt install build-essential gcc dirmngr ca-certificates software-properties-common apt-transport-https dkms curl -y
